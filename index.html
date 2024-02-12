@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body style="background-color: burlywood;" >
+
+    <h1>Calculator Design Using HTML Layout</h1>
+    <div class="container">
+      <div class="header">Calculator</div>
+      <input id="result" type="text" class="result">
+      <!-- <div class="first-row">
+        <input type="button" name="" value="&radic;" class="global">
+        <input type="button" name="" value="(" class="global">
+        <input type="button" name="" value=")" class="global">
+        <input type="button" name="" value="%" class="global">
+      </div> -->
+      <div class="second-row">
+        <input id="seven" type="button" onclick="displayNumber(7)" value="7" class="global">
+        <input id="eight" type="button" onclick="displayNumber(8)" value="8" class="global">
+        <input id="nine" type="button" onclick="displayNumber(9)" value="9" class="global">
+        <input id="mutiplication" type="button" onclick="displayNumber('*')" value="x" class="global">
+      </div>
+      <div class="third-row">
+        <input id="four" type="button" onclick="displayNumber(4)" value="4" class="global">
+        <input id="five" type="button" onclick="displayNumber(5)" value="5" class="global">
+        <input id="six" type="button" onclick="displayNumber(6)" value="6" class="global">
+        <input id="subtraction" type="button" onclick="displayNumber('-')" value="-" class="global">
+      </div>
+      <div class="fourth-row">
+        <input id="one" type="button" onclick="displayNumber(1)" value="1" class="global">
+        <input id="two" type="button" onclick="displayNumber(2)" value="2" class="global">
+        <input id="three" type="button" onclick="displayNumber(3)" value="3" class="global">
+        <input id="addition" type="button" onclick="displayNumber('+')" value="+" class="global">
+      </div>
+      <div class="conflict">
+        <div class="left">
+          <input id="ac" type="button" onclick="clearText()" value="AC" class=" big">
+          <input id="zero" type="button" onclick="displayNumber(0)" value="0" class=" small">
+          <input id="delete" type="button" onclick="removeLastChar()" value="Delete" class=" red small white-text top-margin">
+          <input id="equals" type="button" onclick="evaluateNum()" value="=" class=" green white-text big top-margin">
+        </div>
+        <div class="right">
+          <input id="division" type="button" onclick="displayNumber('/')" value="/" class="global grey plus">
+        </div>
+      </div>
+    </div>
+    <style>
+        
+        h1{
+  text-align: center;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: white;
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  margin: auto;
+  width: 25%;
+  padding: 10px;
+  border: 1px solid #f2f2f2;
+  -webkit-box-shadow: 1px 1px 4px 0px rgba(176,176,176,1);
+     -moz-box-shadow: 1px 1px 4px 0px rgba(176,176,176,1);
+          box-shadow: 1px 1px 4px 0px rgba(176,176,176,1);
+  background-color: #fff;
+  height: 450px;
+  background-color: #F8F8F8;
+}
+.header{
+  background-color: cadetblue;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.result{
+  font-size: 24px;
+  padding: 24px 5px;
+  font-weight: 700;
+  text-align: right;
+  width: 96%;
+  border: none;
+  background-color: #F8F8F8;
+}
+.first-row,
+.second-row,
+.third-row,
+.fourth-row,
+.conflict
+{
+  display: inline-block;
+  width: 100%;
+}
+.global{
+ padding: 15px;
+ font-weight: bold;
+ font-size: 16px;
+ border: none;
+ border-radius: 3px;
+ background-color: #F2F2F2;
+ float: left;
+ width: 23.5%;
+ margin: 0 2px;
+ /*border: 1px solid #000;*/
+}
+.conflict .left,
+.conflict .right{
+  float: left;
+  position: relative;
+}
+.left{
+  width: 74%;
+}
+.right{
+  width: 24%;
+}
+.big{
+  padding: 15px;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 3px;
+  background-color: #F2F2F2;
+  float: left;
+  width: 64.5%;
+  margin: 0 2px;
+}
+.small{
+  padding: 15px;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 3px;
+  background-color: #F2F2F2;
+  float: left;
+  width: 31.5%;
+  margin: 0 2px;
+}
+.plus{
+  height: 105px;
+  width: 100%;
+}
+.green{
+  background-color: cadetblue;
+}
+.red{
+  background-color: #F50258
+}
+.grey{
+  background-color: #F2F2F2;
+}
+.white-text{
+  color: #fff;
+}
+.top-margin{
+  margin-top: 4px;
+}
+
+    </style>
+
+    <script>
+        //1 display a number in text fild
+        function displayNumber(num){
+            result.value+=num
+        }
+
+        //2 clear the text field
+        function clearText(){
+            result.value=""
+        }
+
+        //3 evaluate the expression
+        function evaluateNum(){
+            // exp=result.value  //exp = 1+2
+            // res=eval(exp) //eval(1+2)=3
+            // result.value=res
+            result.value=eval(result.value)
+        }
+        
+        //4 Remove last character from the text field
+        function removeLastChar(){
+            result.value=result.value.slice(0,-1)
+        }
+
+    </script>
+
+</body>
+</html>
